@@ -78,7 +78,8 @@ class profileController extends Controller
 
     public function profile()
     {
-        return view('profile');
+        $data = registration::find(session()->get('uid'));
+        return view('profile',['data'=>$data]);
     }
 
     public function editprofile($id)
@@ -91,23 +92,24 @@ class profileController extends Controller
     {
         // return $request->file('avtar');
         $valid = $request->validate([
-            'email' => 'required | email | unique:registrations,email',
+            'email' => 'required | email',
             'fullname' => 'required | min:4',
             'username' => 'required',
-            'gender' => 'reuired',
-            'mobile' => 'reuired | min:10 | max:10',
-            'address' => 'reuired | min:4',
-            'education' => 'reuired | min:4',
-            'stream' => 'reuired | min:4',
-            'cur_job' => 'reuired |min:4',
-            'dob' => 'reuired',
-            'avtar' => 'required'
+            'gender' => 'required',
+            'mobile' => 'required | max:10',
+            'address' => 'required | min:4',
+            'education' => 'required | min:4',
+            'stream' => 'required | min:4',
+            'cur_job' => 'required |min:4',
+            'dob' => 'required',
+            'avtar' => 'required',
 
         ]);
 
         if ($valid) {
             $user = new registration;
-
+            $user = registration::find($request->id);
+            
             $user->fullname = $request->fullname;
             $user->email = $request->email;
             $user->username = $request->username;
@@ -119,6 +121,10 @@ class profileController extends Controller
             $user->current_job = $request->cur_job;
             $user->dob = $request->dob;
             $user->token = $request->_token;
+            $destinationPath = 'images/';
+            $file = $request->file('avtar');
+            $user->avtar = $file->getClientOriginalName();
+            $file->move($destinationPath,$file->getClientOriginalName());
             $user->save();
 
             return redirect('profile');

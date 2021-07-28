@@ -20,7 +20,7 @@
                             <div class="card-block text-center text-white">
                                 <div class="m-b-25"> <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> </div>
                                 <h6 class="f-w-600">{{ session()->get('fullname') }}</h6>
-                                <p>Web Designer</p> <a href="editprofile/{{ $data->id }}"><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i></a>
+                                <p>{{ $data->stream }}</p> <a href="editprofile/{{ $data->id }}"><i class=" mdi mdi-square-edit-outline feather icon-edit m-t-10 f-16"></i></a>
                             </div>
                         </div>
                         <div class="col-sm-8">
@@ -51,8 +51,8 @@
                                         </h6>
                                     </div>
                                     <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Most Viewed</p>
-                                        <h6 class="text-muted f-w-400">Dinoter husainm</h6>
+                                        <p class="m-b-10 f-w-600">Education</p>
+                                        <h6 class="text-muted f-w-400">{{ $data->education }}</h6>
                                     </div>
                                 </div>
                                 <ul class="social-link list-unstyled m-t-40 m-b-10">

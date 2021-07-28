@@ -23,13 +23,22 @@
                             <h4 class="text-right">Profile Settings</h4>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-12"><label class="labels">Full Name</label><input type="text" name="fullname" class="form-control" placeholder="Enter Full Name" value="{{ $data->fullname }}"></div>
+                            <div class="col-md-12"><label class="labels">Full Name</label><input type="text" name="fullname" class="form-control" placeholder="Enter Full Name" value="{{ $data->fullname }}">
+                                <input type="hidden" name="id" class="form-control" placeholder="Enter Full Name" value="{{ $data->id }}">
+                                @error('fullname')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-12"><label class="labels">Email Address</label><input type="text" name="email" class="form-control" placeholder="Enter Email Address" value="{{ $data->email }}"></div>
+                            <div class="col-md-12"><label class="labels">Email Address</label><input type="text" readonly name="email" class="form-control" placeholder="Enter Email Address" value="{{ $data->email }}"></div>
                         </div>
                         <div class="row mt-2">
-                            <div class="col-md-12"><label class="labels">Username</label><input type="text" name="username" class="form-control" placeholder="Enter Username" value="{{ $data->username }}"></div>
+                            <div class="col-md-12"><label class="labels">Username</label><input type="text" name="username" class="form-control" placeholder="Enter Username" value="{{ $data->username }}">
+                                @error('username')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                        </div>
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12"><label class="labels">Gender</label><div class="form-check">
@@ -46,20 +55,50 @@
                               </div></div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" name="mobile" class="form-control" placeholder="Enter Mobile Number" value="{{ $data->mobile }}"></div>
-                            <div class="col-md-12"><label class="labels">Address</label><input type="text" name="address" class="form-control" placeholder="Enter Address" value="{{ $data->address }}"></div>
-                            <div class="col-md-12"><label class="labels">Education</label><input type="text" name="education" class="form-control" placeholder="Enter Education" value="{{ $data->education }}"></div>
-                            <div class="col-md-12"><label class="labels">Stream</label><input type="text" name="stream" class="form-control" placeholder="Enter Stream" value="{{ $data->stream }}"></div>
+                            <div class="col-md-12"><label class="labels">PhoneNumber</label><input type="text" name="mobile" class="form-control" placeholder="Enter Mobile Number" value="{{ $data->mobile }}">
+                                @error('mobile')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-md-12"><label class="labels">Address</label><input type="text" name="address" class="form-control" placeholder="Enter Address" value="{{ $data->address }}">
+                                @error('address')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-md-12"><label class="labels">Education</label><input type="text" name="education" class="form-control" placeholder="Enter Education" value="{{ $data->education }}">
+                                @error('education')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-md-12"><label class="labels">Stream</label><input type="text" name="stream" class="form-control" placeholder="Enter Stream" value="{{ $data->stream }}">
+                                @error('stream')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mt-3">
-                            <div class="col-md-6"><label class="labels">Current Job</label><input type="text" name="cur_job" class="form-control" placeholder="Enter Current Job" value="{{ $data->current_job }}"></div>
-                            <div class="col-md-6"><label class="labels">Date Of Birth</label><input type="date" name="dob" class="form-control" value="{{ $data->dob }}" placeholder="Enter Date Of Birth"></div>
+                            <div class="col-md-6"><label class="labels">Current Job</label><input type="text" name="cur_job" class="form-control" placeholder="Enter Current Job" value="{{ $data->current_job }}">
+                                @error('cur_job')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
+                            <div class="col-md-6"><label class="labels">Date Of Birth</label><input type="date" name="dob" class="form-control" value="{{ $data->dob }}" placeholder="Enter Date Of Birth">
+                                @error('dob')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"> <label for="avtar" class="form-label">Upload Your New Avtar</label>
-                                <input class="form-control" type="file" id="avtar" name="avtar"></div>
+                                <input class="form-control" type="file" id="avtar" name="avtar">
+                                @error('avtar')
+                                    <p class="text-danger">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
-                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                        <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="submit">Save Profile</button>
+                            <a class="btn btn-danger profile-button" href="/profile">Cancel</a>
+                        </div>
                     </div>
                 </form>
                 </div>
