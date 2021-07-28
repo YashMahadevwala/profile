@@ -89,6 +89,39 @@ class profileController extends Controller
 
     public function updateprofile(Request $request)
     {
-        return $request;
+        // return $request->file('avtar');
+        $valid = $request->validate([
+            'email' => 'required | email | unique:registrations,email',
+            'fullname' => 'required | min:4',
+            'username' => 'required',
+            'gender' => 'reuired',
+            'mobile' => 'reuired | min:10 | max:10',
+            'address' => 'reuired | min:4',
+            'education' => 'reuired | min:4',
+            'stream' => 'reuired | min:4',
+            'cur_job' => 'reuired |min:4',
+            'dob' => 'reuired',
+            'avtar' => 'required'
+
+        ]);
+
+        if ($valid) {
+            $user = new registration;
+
+            $user->fullname = $request->fullname;
+            $user->email = $request->email;
+            $user->username = $request->username;
+            $user->gender = $request->gender;
+            $user->mobile = $request->mobile;
+            $user->address = $request->address;
+            $user->education = $request->education;
+            $user->stream = $request->stream;
+            $user->current_job = $request->cur_job;
+            $user->dob = $request->dob;
+            $user->token = $request->_token;
+            $user->save();
+
+            return redirect('profile');
+        }
     }
 }
