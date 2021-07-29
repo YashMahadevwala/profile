@@ -66,9 +66,7 @@ class profileController extends Controller
                 }else{
                     $request->session()->put('fullname',$data->fullname);
                     // return $request->session()->get('fullname');
-                    // $request->session()->put('uid', $data->id);
-                    $request->session()->get('uid');
-                    // return $data;
+                    $request->session()->put('uid', $data->id);
                     return view('profile',['data'=>$data]);
                 }
             }
@@ -78,7 +76,7 @@ class profileController extends Controller
 
     public function profile()
     {
-        $data = registration::find(session()->get('uid'));
+        $data = registration::find(session('uid'));
         return view('profile',['data'=>$data]);
     }
 
@@ -129,5 +127,14 @@ class profileController extends Controller
 
             return redirect('profile');
         }
+    }
+
+
+    public function logout(Request $request)
+    {
+        $request->session()->forget('fullname');
+        $request->session()->forget('uid');
+
+        return redirect('login');
     }
 }

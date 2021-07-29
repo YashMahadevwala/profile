@@ -24,6 +24,16 @@ Route::post('registration',[profileController::class,'store']);
 Route::get('login',[profileController::class,'login']);
 Route::post('login',[profileController::class,'logincheck']);
 
-Route::get('profile',[profileController::class,'profile']);
+
 Route::get('editprofile/{id}',[profileController::class,'editprofile']);
 Route::post('editprofile',[profileController::class,'updateprofile']);
+
+Route::get('logout',[profileController::class,'logout']);
+
+// Route::group(['middleware' => ['authentic']],function(){
+//     Route::get('profile',[profileController::class,'profile']);
+// });
+
+Route::group(['middleware' => ['authentic']], function(){
+    Route::get('profile',[profileController::class,'profile']);
+});

@@ -13,7 +13,14 @@
         <div class="container rounded bg-white mt-5 mb-5">
             <div class="row">
                 <div class="col-md-3 border-right">
-                    <div class="d-flex flex-column align-items-center text-cente r p-3 py-5"><img class="rounded-circle mt-5" src="https://img.icons8.com/bubbles/100/000000/user.png"><span class="font-weight-bold">{{ $data->fullname }}</span><span class="text-black-50">{{ $data->email }}</span><span> </span></div>
+                    <div class="d-flex flex-column align-items-center text-cente r p-3 py-5">
+                        @if ($data->avtar == '')
+                            <img src="https://img.icons8.com/bubbles/100/000000/user.png" class="img-radius" alt="User-Profile-Image"> 
+                        @else
+                        <img class="rounded-circle mt-5" src="{{url('/images/'.$data->avtar)}}" width="100px" height="110px">
+                        @endif
+                        {{-- <img class="rounded-circle mt-5" src="{{url('/images/'.$data->avtar)}}" width="100px" height="110px"> --}}
+                        <span class="font-weight-bold">{{ $data->fullname }}</span><span class="text-black-50">{{ $data->email }}</span><span> </span></div>
                 </div>
                 <div class="col-md-5 border-right">
                     <form action="/editprofile" method="post" enctype="multipart/form-data">
@@ -42,13 +49,13 @@
                         </div>
                         <div class="row mt-2">
                             <div class="col-md-12"><label class="labels">Gender</label><div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" id="gender" value="male" checked>
+                                <input class="form-check-input" type="radio" name="gender" id="gender" value="male" @if($data->Gender == 'male') ? checked : unchecked @endif>
                                 <label class="form-check-label" for="">
                                   Male
                                 </label>
                               </div>
                               <div class="form-check">
-                                <input class="form-check-input" type="radio" name="gender" id="gender" value="female">
+                                <input class="form-check-input" type="radio" name="gender" id="gender" value="female" @if($data->Gender == 'female') ? checked : unchecked @endif>
                                 <label class="form-check-label" for="">
                                   Female
                                 </label>
