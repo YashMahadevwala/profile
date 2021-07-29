@@ -70,6 +70,7 @@ class profileController extends Controller
                     // return $request->session()->get('fullname');
                     $request->session()->put('uid', $data->id);
                     return view('profile',['data'=>$data]);
+                    
                 }
             }
         }
