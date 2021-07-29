@@ -70,7 +70,7 @@ class profileController extends Controller
                     // return $request->session()->get('fullname');
                     $request->session()->put('uid', $data->id);
                     return view('profile',['data'=>$data]);
-                    
+
                 }
             }
         }
@@ -196,6 +196,7 @@ class profileController extends Controller
     public function blog()
     {
         // $data = blog::all();
+      
         $data = DB::table('blog')
             ->join('registrations', 'blog.author', '=', 'registrations.id')
             ->select('registrations.fullname','blog.*')
@@ -206,30 +207,40 @@ class profileController extends Controller
 
     public function likeinc($id)
     {
+        
         // return $id;
+        $temp = 0;
         $data = blog::find($id);
         // return $data;
-        $data->like += 1;
-        $data->dislike -= 1;
-        if($data->dislike < 0){
-            $data->dislike = 0;
+        $temp++;
+        // $data->like += 1;
+        // $data->dislike -= 1;
+        // if($data->dislike < 0){
+        //     $data->dislike = 0;
+        // }
+        if($temp == 1){
+            $data->like += 1;
+            $temp = 0;
+        }else{
+            $data->like -= 1;
+            $temp = 1;
         }
         $data->save();
         return redirect('blog');
     }
 
-    public function likedec($id)
-    {
-        // return $id;
-        $data = blog::find($id);
-        // return $data;
-        $data->dislike += 1;
-        $data->like -= 1;
-        if($data->like < 0){
-            $data->like = 0;
-        }
-        $data->save();
-        return redirect('blog');
-    }
+    // public function likedec($id)
+    // {
+    //     // return $id;
+    //     $data = blog::find($id);
+    //     // return $data;
+    //     $data->dislike += 1;
+    //     $data->like -= 1;
+    //     if($data->like < 0){
+    //         $data->like = 0;
+    //     }
+    //     $data->save();
+    //     return redirect('blog');
+    // }
 
 }

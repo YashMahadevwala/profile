@@ -59,10 +59,10 @@
                   <i class="far fa-heart"></i>
                   <span>{{ $item->like }}</span>
                 </a>
-                <a href="likedec/{{ $item->id }}" style="margin-left:20px">
+                {{-- <a href="likedec/{{ $item->id }}" style="margin-left:20px">
                   <i class="fas fa-heart-broken"></i>
                   <span>{{ $item->dislike }}</span>
-                </a>
+                </a> --}}
               </div>
             
 
