@@ -83,6 +83,7 @@ class profileController extends Controller
     public function editprofile($id)
     {
         $data = registration::find($id);
+        // return redirect('editprofile');
         return view('editprofile',['data'=>$data]);
     }
 
@@ -100,8 +101,6 @@ class profileController extends Controller
             'stream' => 'required | min:4',
             'cur_job' => 'required |min:4',
             'dob' => 'required',
-            'avtar' => 'required',
-
         ]);
 
         if ($valid) {
@@ -119,6 +118,18 @@ class profileController extends Controller
             $user->current_job = $request->cur_job;
             $user->dob = $request->dob;
             $user->token = $request->_token;
+            // if($request->avtarname == ''){
+            //     $destinationPath = 'images/';
+            //     $file = $request->file('avtar');
+            //     $user->avtar = $file->getClientOriginalName();
+            //     $file->move($destinationPath,$file->getClientOriginalName());
+                
+            // }if($request->file('avtar') != ''){
+            //     $destinationPath = 'images/';
+            //     $file = $request->file('avtar');
+            //     $user->avtar = $file->getClientOriginalName();
+            //     $file->move($destinationPath,$file->getClientOriginalName());
+            // }
             $destinationPath = 'images/';
             $file = $request->file('avtar');
             $user->avtar = $file->getClientOriginalName();

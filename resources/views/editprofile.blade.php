@@ -97,6 +97,7 @@
                         </div>
                         <div class="row mt-3">
                             <div class="col-md-12"> <label for="avtar" class="form-label">Upload Your New Avtar</label>
+                                <input type="hidden" class="form-control" id="avtarname" name="avtarname" value="{{ $data->avtar }}">
                                 <input class="form-control" type="file" id="avtar" name="avtar">
                                 @error('avtar')
                                     <p class="text-danger">{{ $message }}</p>

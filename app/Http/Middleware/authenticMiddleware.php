@@ -16,8 +16,11 @@ class authenticMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!session('fullname') && !session('uid') && ($request->path == 'profile')) {
+        if(!session() -> has('fullname') && ($request->path() == 'profile')){
             return redirect('login');
+        }
+        if(session() -> has('fullname') && (($request->path() == 'login') || ($request->path() == 'registration'))){
+            return redirect('profile');
         }
         return $next($request);
     }
