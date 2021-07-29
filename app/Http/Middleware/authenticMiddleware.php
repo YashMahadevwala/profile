@@ -22,6 +22,9 @@ class authenticMiddleware
         if(session() -> has('fullname') && (($request->path() == 'login') || ($request->path() == 'registration'))){
             return redirect('profile');
         }
+        if(!session() -> has('fullname') && ($request->path() == 'createblog')){
+            return redirect('login');
+        }
         return $next($request);
     }
 }

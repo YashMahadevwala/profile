@@ -61,6 +61,7 @@
                                                 Log in
                                                 </button>
                                                 <a href="/registration" class="btn btn-primary" style="">Registration</a>
+                                                <a href="/blog" class="btn btn-primary" style="">Back</a>
                                             </div>
                                         </div>
                                     </form>

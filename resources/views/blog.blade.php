@@ -6,7 +6,8 @@
 
         <title>Profile</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.7/tailwind.min.css" integrity="sha512-y6ZMKFUQrn+UUEVoqYe8ApScqbjuhjqzTuwUMEGMDuhS2niI8KA3vhH2LenreqJXQS+iIXVTRL2iaNfJbDNA1Q==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    </head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      </head>
     <body class="antialiased">
     
       <header class="text-gray-600 body-font">
@@ -39,24 +40,36 @@
               <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                 <span class="font-semibold title-font text-gray-700">
                   {{-- {{ $item->image }} --}}
-                  <img src="{{url('/images/'.$item->photo)}}" alt="Not Found">
+                  <img src="{{url('/images/'.$item->image)}}" alt="Not Found" width="153px">
                 </span>
                 <span class="mt-1 text-gray-500 text-sm">{{ $item->created_at }}</span>
               </div>
               <div class="md:flex-grow">
                 <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{ $item->title }}</h2>
                 <p class="leading-relaxed">{{ $item->disc }}</p>
-                <a class="text-indigo-500 inline-flex items-center mt-4">Learn More
-                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <a class="text-indigo-500 inline-flex items-center mt-4">
+                      {{ $item->fullname }}
+                      
+                  {{-- <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>
-                  </svg>
+                  </svg> --}}
+                </a><br>
+                <a href="likeinc/{{ $item->id }}">
+                  <i class="far fa-heart"></i>
+                  <span>{{ $item->like }}</span>
+                </a>
+                <a href="likedec/{{ $item->id }}" style="margin-left:20px">
+                  <i class="fas fa-heart-broken"></i>
+                  <span>{{ $item->dislike }}</span>
                 </a>
               </div>
+            
+
             </div>
             @endforeach
 
-            
+
             </div>
           </div>
         </div>

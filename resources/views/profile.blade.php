@@ -11,6 +11,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body class="antialiased">
+
     <div class="page-content page-container" id="page-content">
     <div class="padding">
         <div class="row container d-flex justify-content-center">
@@ -70,18 +71,18 @@
 
                                 <h6 class="m-b-20 m-t-40 p-b-5 b-b-default f-w-600">Craetor part</h6>
                                 <div class="row">
-                                    {{-- <div class="col-sm-6">
-                                        <p class="m-b-10 f-w-600">Show blog</p>
-                                        {{-- <h6 class="text-muted f-w-400"> --}}
-                                            {{-- <a href="" style="color: #919AA3">Show Blog</a> --}}
-                                           {{-- <i class="fas fa-th"></i> --}}
-                                        {{-- </h6> 
-                                    </div> --}}
                                     <div class="col-sm-6">
                                         <p class="m-b-10 f-w-600">Create Blog</p>
                                         <h6 class="text-muted f-w-400">
+                                            <a href="createblog" style="color: #919AA3"><i class="fab fa-blogger-b"></i>
+                                            Click To Create</a>
+                                        </h6>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <p class="m-b-10 f-w-600">Total Blog</p>
+                                        <h6 class="text-muted f-w-400">
                                             {{-- <i class="fas fa-th" href=""></i> --}}
-                                            <a href="createblog" style="color: #919AA3">Create Blog</a>
+                                            {{ $count }}
                                         </h6>
                                     </div>
                                 </div>

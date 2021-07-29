@@ -38,9 +38,12 @@ Route::group(['middleware' => ['authentic']], function(){
     Route::get('profile',[profileController::class,'profile']);
     Route::get('registration',[profileController::class,'index']);
     Route::get('login',[profileController::class,'login']);
+    Route::get('createblog',[profileController::class,'createblog']);
 });
 
-Route::get('createblog',[profileController::class,'createblog']);
 Route::post('createblog',[profileController::class,'storeblog']);
 
 Route::get('blog',[profileController::class,'blog']);
+
+Route::get('likeinc/{id}',[profileController::class,'likeinc']);
+Route::get('likedec/{id}',[profileController::class,'likedec']);

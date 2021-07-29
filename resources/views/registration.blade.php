@@ -84,6 +84,7 @@
                                                 Register
                                                 </button>
                                                 <a href="/login" class="btn btn-primary" style="">Log in</a>
+                                                <a href="/blog" class="btn btn-primary" style="">Back</a>
                                             </div>
                                         </div>
                                     </form>

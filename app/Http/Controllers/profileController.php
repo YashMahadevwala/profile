@@ -7,6 +7,7 @@ use App\Models\registration;
 use Illuminate\Support\Facades\Hash;
 use Prophecy\Promise\ReturnPromise;
 use App\Models\blog;
+use Illuminate\Support\Facades\DB;
 
 class profileController extends Controller
 {
@@ -78,7 +79,9 @@ class profileController extends Controller
     public function profile()
     {
         $data = registration::find(session('uid'));
-        return view('profile',['data'=>$data]);
+        $count = blog::where('author','=',session('uid'))->count();
+        // return $count;
+        return view('profile',['data'=>$data,'count'=>$count]);
     }
 
     public function editprofile($id)
@@ -147,7 +150,7 @@ class profileController extends Controller
         $request->session()->forget('fullname');
         $request->session()->forget('uid');
 
-        return redirect('login');
+        return redirect('blog');
     }
 
     public function createblog()
@@ -170,12 +173,15 @@ class profileController extends Controller
 
             $blog->title = $request->title;
             $blog->disc = $request->disc;
+            $blog->like = 0;
+            $blog->dislike = 0;
             // $blog->image = $request->photo;
             $blog->author = session('uid');
             // return session('fullname');
             $destinationPath = 'images/';
             // return $request->photo;
             $file = $request->file('photo');
+            // dd($file);
             $blog->image = $file->getClientOriginalName();
             $file->move($destinationPath,$file->getClientOriginalName());
             $blog->save();
@@ -188,8 +194,33 @@ class profileController extends Controller
 
     public function blog()
     {
-        $data = blog::all();
+        // $data = blog::all();
+        $data = DB::table('blog')
+            ->join('registrations', 'blog.author', '=', 'registrations.id')
+            ->select('registrations.fullname','blog.*')
+            ->get();
+            // return $author;
         return view('blog',compact('data'));
+    }
+
+    public function likeinc($id)
+    {
+        // return $id;
+        $data = blog::find($id);
+        // return $data;
+        $data->dislike += 1;
+        $data->save();
+        return redirect('blog');
+    }
+
+    public function likedec($id)
+    {
+        // return $id;
+        $data = blog::find($id);
+        // return $data;
+        $data->dislike += 1;
+        $data->save();
+        return redirect('blog');
     }
 
 }

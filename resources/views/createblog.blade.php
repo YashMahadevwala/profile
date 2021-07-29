@@ -30,7 +30,7 @@
 
       <div class="bg-green-200 py-32 px-10 min-h-screen ">
         <div class="bg-white p-10 md:w-3/4 lg:w-1/2 mx-auto">
-          <form action="/createblog" method="POST">
+          <form action="/createblog" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex items-center mb-5">
               <label for="name" class="inline-block w-20 mr-6 text-right 
