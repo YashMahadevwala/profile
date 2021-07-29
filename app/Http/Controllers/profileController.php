@@ -208,7 +208,11 @@ class profileController extends Controller
         // return $id;
         $data = blog::find($id);
         // return $data;
-        $data->dislike += 1;
+        $data->like += 1;
+        $data->dislike -= 1;
+        if($data->dislike < 0){
+            $data->dislike = 0;
+        }
         $data->save();
         return redirect('blog');
     }
@@ -219,6 +223,10 @@ class profileController extends Controller
         $data = blog::find($id);
         // return $data;
         $data->dislike += 1;
+        $data->like -= 1;
+        if($data->like < 0){
+            $data->like = 0;
+        }
         $data->save();
         return redirect('blog');
     }
