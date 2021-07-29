@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\DB;
 class profileController extends Controller
 {
     //
+    // define("MYCONSTANT", "hello");
     public function index()
     {
         return view('registration');
@@ -204,6 +205,7 @@ class profileController extends Controller
             // return $author;
         return view('blog',compact('data'));
     }
+    // 
 
     public function likeinc($id)
     {
