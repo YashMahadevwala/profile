@@ -82,7 +82,12 @@
                                         <p class="m-b-10 f-w-600">Total Blog</p>
                                         <h6 class="text-muted f-w-400">
                                             {{-- <i class="fas fa-th" href=""></i> --}}
+                                            @isset($count)
                                             {{ $count }}
+                                            @else
+                                             {{-- {{ redirect('login') }} --}}
+                                             {{-- {{ redirect(Request::url()) }} --}}
+                                            @endisset
                                         </h6>
                                     </div>
                                 </div>
