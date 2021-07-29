@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\registration;
 use Illuminate\Support\Facades\Hash;
 use Prophecy\Promise\ReturnPromise;
+use App\Models\blog;
 
 class profileController extends Controller
 {
@@ -148,4 +149,47 @@ class profileController extends Controller
 
         return redirect('login');
     }
+
+    public function createblog()
+    {
+        return view('createblog');
+    }
+
+    public function storeblog(Request $request)
+    {
+        // return $request;
+        // 
+        $valid = $request->validate([
+            'title' => 'required | min:4',
+            'disc' => 'required | min:4',
+            'photo' => 'required'
+        ]);
+
+        if ($valid) {
+            $blog = new blog;
+
+            $blog->title = $request->title;
+            $blog->disc = $request->disc;
+            // $blog->image = $request->photo;
+            $blog->author = session('uid');
+            // return session('fullname');
+            $destinationPath = 'images/';
+            // return $request->photo;
+            $file = $request->file('photo');
+            $blog->image = $file->getClientOriginalName();
+            $file->move($destinationPath,$file->getClientOriginalName());
+            $blog->save();
+            return redirect('profile');
+            // return "done";
+        }
+        
+       
+    }
+
+    public function blog()
+    {
+        $data = blog::all();
+        return view('blog',compact('data'));
+    }
+
 }
